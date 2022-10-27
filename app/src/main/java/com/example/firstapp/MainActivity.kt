@@ -76,7 +76,31 @@ class MainActivity : AppCompatActivity() {
         if(digitsOperator.isEmpty()) return ""
 
         val timesDivision = timesDivisionCalculate(digitsOperator)
-        return ""
+        if (timesDivision.isEmpty()) return ""
+
+        val result =addSubtractCalculate(timesDivision)
+        return result.toString()
+    }
+
+    private fun addSubtractCalculate(passedList: MutableList<Any>) {
+
+        var result = passedList[0] as Float
+
+        for(i in passedList.indices)
+
+        {
+            if(passedList[i] is Char && i != passedList.lastIndex){
+
+                val operator =passedList[i]
+                val nextDigit = passedList[i + 1] as Float
+                if (operator == '+')
+                    result += nextDigit
+                if (operator == '-')
+                    result -= nextDigit
+
+            }
+        }
+
     }
 
     private fun  timesDivisionCalculate(passedList: MutableList<Any>): MutableList<Any>
@@ -100,8 +124,8 @@ class MainActivity : AppCompatActivity() {
             if(passedlist[i] is Char && i !=passedlist.lastIndex && i < restartIndex){
 
                 val operator = passedlist[i]
-                val prevDigit = passedlist[i]  as Float
-                val nextDigit = passedlist[i]  as Float
+                val prevDigit = passedlist[i - 1]  as Float
+                val nextDigit = passedlist[i + 1]  as Float
                 when(operator)
 
                 {
@@ -116,10 +140,19 @@ class MainActivity : AppCompatActivity() {
 
                     {
                         newlist.add(prevDigit / nextDigit)
+                        restartIndex = i + 1
+
+                    }
+                    else ->
+                    {
+                        newlist.add(prevDigit)
+                        newlist.add(operator)
                     }
                 }
 
             }
+            if(i > restartIndex)
+                newlist.add(passedlist[i])
         }
 
 
