@@ -74,11 +74,13 @@
         <Button
             style="@style/buttonNumber"
             android:textColor="@color/orange"
+            android:onClick="operationAction"
             android:text="%"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <Button
             style="@style/buttonOperator"
+            android:onClick="operationAction"
             android:text="/"/>
 
 
@@ -91,19 +93,25 @@
 
             <Button
                 style="@style/buttonNumber"
+                android:onClick="numberAction"
                 android:text="7"/>
+
+
 
             <Button
                 style="@style/buttonNumber"
+                android:onClick="numberAction"
                 android:text="8"/>
 
 
             <Button
                 style="@style/buttonNumber"
+                android:onClick="numberAction"
                 android:text="9"/>
 
             <Button
                 style="@style/buttonOperator"
+                android:onClick="operationAction"
                 android:textSize="30sp"
                 android:text="x"/>
 
@@ -117,19 +125,23 @@
 
         <Button
             style="@style/buttonNumber"
+            android:onClick="numberAction"
             android:text="4"/>
 
         <Button
             style="@style/buttonNumber"
+            android:onClick="numberAction"
             android:text="5"/>
 
 
         <Button
             style="@style/buttonNumber"
+            android:onClick="numberAction"
             android:text="6"/>
 
         <Button
             style="@style/buttonOperator"
+            android:onClick="operationAction"
             android:textSize="30sp"
             android:text="_"/>
 
@@ -146,19 +158,23 @@
 
         <Button
             style="@style/buttonNumber"
+            android:onClick="numberAction"
             android:text="1"/>
 
         <Button
             style="@style/buttonNumber"
+            android:onClick="numberAction"
             android:text="2"/>
 
 
         <Button
             style="@style/buttonNumber"
+            android:onClick="numberAction"
             android:text="3"/>
 
         <Button
             style="@style/buttonOperator"
+            android:onClick="operationAction"
             android:textSize="35sp"
             android:text="+"/>
 
@@ -173,10 +189,12 @@
 
         <Button
             style="@style/buttonNumber"
+            android:onClick="numberAction"
             android:text="."/>
 
         <Button
             style="@style/buttonNumber"
+            android:onClick="numberAction"
 
             android:text="0"/>
 
@@ -190,7 +208,8 @@
             android:textColor="@color/white"
             android:textSize="40sp"
             tools:ignore="TextContrastCheck"
-            tools:onClick="equalsAction" />
+            tools:onClick="equalsAction"
+            android:onClick="operationAction"/>
 
 
     </LinearLayout>
