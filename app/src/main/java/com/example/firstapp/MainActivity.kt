@@ -17,7 +17,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
     }
 
        fun numberAction (view: View) {
@@ -25,6 +24,7 @@ class MainActivity : AppCompatActivity() {
            if(view is Button) {
 
             if(view.text.toString() == ".") {
+
               if(canAddDecimal)
 
                workingsTV.append(view.text)
@@ -41,6 +41,7 @@ class MainActivity : AppCompatActivity() {
 
 
        fun operationAction (view: View) {
+
            if(view is Button && canAddOperation){
                workingsTV.append(view.text)
                canAddOperation = false
@@ -65,12 +66,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun equalsAction(view: View){
-
         resultsTV.text = calculateResults()
     }
 
 
-    private fun  calculateResults(): String{
+    private fun  calculateResults(): String {
 
         val digitsOperator = digitsOperation()
         if(digitsOperator.isEmpty()) return ""
@@ -78,7 +78,7 @@ class MainActivity : AppCompatActivity() {
         val timesDivision = timesDivisionCalculate(digitsOperator)
         if (timesDivision.isEmpty()) return ""
 
-        val result =addSubtractCalculate(timesDivision)
+        val result = addSubtractCalculate(timesDivision)
         return result.toString()
     }
 
@@ -91,10 +91,12 @@ class MainActivity : AppCompatActivity() {
         {
             if(passedList[i] is Char && i != passedList.lastIndex){
 
-                val operator =passedList[i]
+                val operator = passedList[i]
                 val nextDigit = passedList[i + 1] as Float
+
                 if (operator == '+')
                     result += nextDigit
+
                 if (operator == '-')
                     result -= nextDigit
 
@@ -129,55 +131,50 @@ class MainActivity : AppCompatActivity() {
                 when(operator)
 
                 {
-                    'x' ->
-
-
-                    {
+                    'x' -> {
                         newlist.add(prevDigit * nextDigit)
                         restartIndex = i + 1
                     }
-                    '/' ->
 
-                    {
+                    '/' -> {
                         newlist.add(prevDigit / nextDigit)
                         restartIndex = i + 1
-
                     }
-                    else ->
-                    {
+
+                    else -> {
                         newlist.add(prevDigit)
                         newlist.add(operator)
                     }
-                }
 
+
+                }
             }
-            if(i > restartIndex)
-                newlist.add(passedlist[i])
+
+
+            if(i > restartIndex) newlist.add(passedlist[i])
         }
 
 
         return newlist
-
     }
 
     private fun digitsOperation(): MutableList<Any>{
 
         val list = mutableListOf<Any>()
-        var currentDigit= ""
+        var currentDigit = ""
         for(character in workingsTV.text){
 
             if(character.isDigit()|| character == '.' )
                 currentDigit += character
 
             else{
-
                 list.add(currentDigit.toFloat())
                 currentDigit = ""
                 list.add(character)
             }
         }
 
-        if (currentDigit !="")
+        if (currentDigit != "")
             list.add(currentDigit.toFloat())
 
             return list
