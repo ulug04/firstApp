@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
 
            if(view is Button) {
 
-            if(view.text == ".") {
+            if(view.text.toString() == ".") {
               if(canAddDecimal)
 
                workingsTV.append(view.text)
